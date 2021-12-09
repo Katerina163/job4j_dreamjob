@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Store {
 
     private static final Store INST = new Store();
-    SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+    private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
     private Store() {
