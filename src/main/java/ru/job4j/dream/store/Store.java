@@ -11,14 +11,15 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Store {
 
     private static final Store INST = new Store();
-    private static final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+    private static final SimpleDateFormat simple_format = new SimpleDateFormat("dd.MM.yyyy");
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
+
 
     private Store() {
         try {
-            posts.put(1, new Post(1, "Mark", "@mdo", format.parse("01.02.2020")));
-            posts.put(2, new Post(2, "Jacob", "@fat", format.parse("10.04.2020")));
-            posts.put(3, new Post(3, "Larry", "@twitter", format.parse("12.07.2020")));
+            posts.put(1, new Post(1, "Mark", "@mdo", simple_format.parse("01.02.2020")));
+            posts.put(2, new Post(2, "Jacob", "@fat", simple_format.parse("10.04.2020")));
+            posts.put(3, new Post(3, "Larry", "@twitter", simple_format.parse("12.07.2020")));
         } catch (ParseException e) {
             e.printStackTrace();
         }
