@@ -14,7 +14,6 @@ public class Store {
     private static final SimpleDateFormat simple_format = new SimpleDateFormat("dd.MM.yyyy");
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
-
     private Store() {
         try {
             posts.put(1, new Post(1, "Mark", "@mdo", simple_format.parse("01.02.2020")));
