@@ -30,7 +30,7 @@
             <div class="card-body">
                 <form>
                     <div class="form-group">
-                        <label>Имя</label>
+                        <label>Название</label>
                         <input type="text" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
