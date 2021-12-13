@@ -1,19 +1,14 @@
 package ru.job4j.dream.model;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Post {
     private int id;
     private String name;
-    private String description;
-    private Date created;
 
-    public Post(int id, String name, String description, Date created) {
+    public Post(int id, String name) {
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.created = created;
     }
 
     public int getId() {
@@ -32,22 +27,6 @@ public class Post {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -57,12 +36,11 @@ public class Post {
             return false;
         }
         Post post = (Post) o;
-        return id == post.id && Objects.equals(name, post.name)
-                && Objects.equals(created, post.created);
+        return id == post.id && Objects.equals(name, post.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, created);
+        return Objects.hash(id, name);
     }
 }
