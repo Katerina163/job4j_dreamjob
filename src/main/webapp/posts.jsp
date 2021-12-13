@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="ru.job4j.dream.model.Candidate" %>
+<%@ page import="ru.job4j.dream.store.Store" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,15 +35,11 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <% for (Candidate c : Store.instOf().findAllCandidates()) { %>
                     <tr>
-                        <td>Junior Java Job</td>
+                        <td><%= c.getName() %></td>
                     </tr>
-                    <tr>
-                        <td>Middle Java Job</td>
-                    </tr>
-                    <tr>
-                        <td>Senior Java Job</td>
-                    </tr>
+                    <% } %>
                     </tbody>
                 </table>
             </div>
