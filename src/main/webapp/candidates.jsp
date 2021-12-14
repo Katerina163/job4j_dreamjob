@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <!-- Required meta tags -->
-    <%@page contentType="text/html; charset=UTF-8" %>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -26,15 +26,13 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
+                <th scope="col">Имя</th>
             </tr>
             </thead>
             <tbody>
-            <% for (Candidate c : Store.instOf().findAllCandidates()) { %>
+            <% for (Candidate candidate : Store.instOf().findAllCandidates()) { %>
             <tr>
-                <td><%= c.getId() %></td>
-                <td><%= c.getName() %></td>
+                <td><%= candidate.getName() %></td>
             </tr>
             <% } %>
             </tbody>
