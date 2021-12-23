@@ -28,6 +28,7 @@
             <thead>
             <tr>
                 <th scope="col">Имя</th>
+                <th scope="col">Фото</th>
             </tr>
             </thead>
             <tbody>
@@ -39,10 +40,16 @@
                         </a>
                         <c:out value="${candidate.name}"/>
                     </td>
+                    <td>
+                        <img src="<c:url value='/download?name=${candidate.id}'/>" width="100px" height="100px"/>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+        <h4>
+            <a class="nav-link" href="<%=request.getContextPath()%>/upload.jsp">Изменить фото</a>
+        </h4>
     </div>
 </div>
 </body>
