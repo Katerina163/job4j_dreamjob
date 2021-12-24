@@ -29,6 +29,7 @@
             <tr>
                 <th scope="col">Имя</th>
                 <th scope="col">Фото</th>
+                <th> </th>
             </tr>
             </thead>
             <tbody>
@@ -42,6 +43,9 @@
                     </td>
                     <td>
                         <img src="<c:url value='/download?name=${candidate.id}'/>" width="100px" height="100px"/>
+                    </td>
+                    <td>
+                        <a href='<c:url value="/delete?id=${candidate.id}"/>'>Удалить кандидата</a>
                     </td>
                 </tr>
             </c:forEach>
