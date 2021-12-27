@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Properties;
 
 public class DbStore implements Store {
-    private static final DbStore instance = new DbStore();
     private final BasicDataSource pool = new BasicDataSource();
 
     private DbStore() {
