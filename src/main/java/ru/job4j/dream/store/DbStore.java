@@ -1,6 +1,8 @@
 package ru.job4j.dream.store;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.job4j.dream.model.Candidate;
 import ru.job4j.dream.model.Post;
 
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class DbStore implements Store {
+    private static final Logger LOG = LoggerFactory.getLogger(DbStore.class.getName());
     private final BasicDataSource pool = new BasicDataSource();
 
     private DbStore() {
@@ -63,7 +66,7 @@ public class DbStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception in ", e);
         }
         return posts;
     }
@@ -80,7 +83,7 @@ public class DbStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception in ", e);
         }
         return candidates;
     }
@@ -107,7 +110,7 @@ public class DbStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception in ", e);
         }
         return post;
     }
@@ -121,7 +124,7 @@ public class DbStore implements Store {
             ps.setString(2, Integer.toString(post.getId()));
             ps.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception in ", e);
         }
     }
 
@@ -137,7 +140,7 @@ public class DbStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception in ", e);
         }
         return null;
     }
@@ -164,7 +167,7 @@ public class DbStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception in ", e);
         }
         return candidate;
     }
@@ -178,7 +181,7 @@ public class DbStore implements Store {
             ps.setString(2, Integer.toString(candidate.getId()));
             ps.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception in ", e);
         }
     }
 
@@ -194,7 +197,7 @@ public class DbStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception in ", e);
         }
         return null;
     }
