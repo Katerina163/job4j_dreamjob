@@ -62,8 +62,7 @@ public class MemStore implements Store {
         return candidates.get(id);
     }
 
-    public boolean deleteByIdCandidate(int id) {
-        Candidate candidate = candidates.remove(id);
-        return candidate != null;
+    public void deleteByIdCandidate(int id) {
+        candidates.remove(id);
     }
 }

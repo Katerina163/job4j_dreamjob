@@ -201,4 +201,16 @@ public class DbStore implements Store {
         }
         return null;
     }
+
+    public void deleteByIdCandidate(int id) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("DELETE FROM TABLE candidate WHERE id = ?",
+                     PreparedStatement.RETURN_GENERATED_KEYS)
+        ) {
+            ps.setString(1, Integer.toString(id));
+            ps.execute();
+        } catch (Exception e) {
+            LOG.error("Exception in ", e);
+        }
+    }
 }
