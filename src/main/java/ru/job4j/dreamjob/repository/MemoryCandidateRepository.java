@@ -19,17 +19,17 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     private MemoryCandidateRepository() {
-        save(new Candidate(1, "Смирнов И.И.", "умный",
+        save(new Candidate(1, "Смирнов И.И.", "умный", 1,
                 LocalDate.of(2021, Month.APRIL, 14)));
-        save(new Candidate(1, "Иванов С.Е.", "красивый",
+        save(new Candidate(1, "Иванов С.Е.", "красивый", 2,
                 LocalDate.of(2022, Month.AUGUST, 14)));
-        save(new Candidate(1, "Кузнецов О.А.", "общительный",
+        save(new Candidate(1, "Кузнецов О.А.", "общительный", 3,
                 LocalDate.of(2023, Month.SEPTEMBER, 14)));
-        save(new Candidate(1, "Попов А.П.", "активный",
+        save(new Candidate(1, "Попов А.П.", "активный", 1,
                 LocalDate.of(2024, Month.JANUARY, 14)));
-        save(new Candidate(1, "Соколов П.С.", "креативный",
+        save(new Candidate(1, "Соколов П.С.", "креативный", 3,
                 LocalDate.of(2025, Month.OCTOBER, 14)));
-        save(new Candidate(1, "Лебедев В.В.", "замечательный",
+        save(new Candidate(1, "Лебедев В.В.", "замечательный", 1,
                 LocalDate.of(2026, Month.JULY, 14)));
     }
 
@@ -49,8 +49,8 @@ public class MemoryCandidateRepository implements CandidateRepository {
     public boolean update(Candidate candidate) {
         return  candidates.computeIfPresent(candidate.getId(), (id, oldCandidate) ->
                 new Candidate(candidate.getId(), candidate.getName(),
-                        candidate.getDescription(), candidate.getCreationDate()))
-                != null;
+                        candidate.getDescription(), candidate.getCityId(),
+                        candidate.getCreationDate())) != null;
     }
 
     @Override
