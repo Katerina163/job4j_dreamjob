@@ -7,7 +7,6 @@ import ru.job4j.dreamjob.model.Vacancy;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,17 +21,17 @@ public class MemoryVacancyRepository implements VacancyRepository {
     private final Map<Integer, Vacancy> vacancies = new ConcurrentHashMap<>();
 
     private MemoryVacancyRepository() {
-        save(new Vacancy(0, "Intern Java Developer", "Работа 24/7, без выходных",
+        save(new Vacancy(0, "Intern Java Developer", "Работа 24/7, без выходных", true,
                 LocalDateTime.of(2021, Month.FEBRUARY, 14, 15, 30)));
-        save(new Vacancy(1, "Junior Java Developer", "Можно смотреть в окно до двух раз день",
+        save(new Vacancy(1, "Junior Java Developer", "Можно смотреть в окно до двух раз день", false,
                 LocalDateTime.of(2022, Month.APRIL, 24, 14, 25)));
-        save(new Vacancy(2, "Junior+ Java Developer", "Один отпускной день в году",
+        save(new Vacancy(2, "Junior+ Java Developer", "Один отпускной день в году", true,
                 LocalDateTime.of(2023, Month.JUNE, 9, 16, 13)));
-        save(new Vacancy(3, "Middle Java Developer", "Отпускаем поспать дома",
+        save(new Vacancy(3, "Middle Java Developer", "Отпускаем поспать дома", false,
                 LocalDateTime.of(2024, Month.SEPTEMBER, 8, 17, 24)));
-        save(new Vacancy(4, "Middle+ Java Developer", "Даем перерывы на еду",
+        save(new Vacancy(4, "Middle+ Java Developer", "Даем перерывы на еду", true,
                 LocalDateTime.of(2025, Month.AUGUST, 12, 18, 15)));
-        save(new Vacancy(5, "Senior Java Developer", "Можете иногда спать",
+        save(new Vacancy(5, "Senior Java Developer", "Можете иногда спать", true,
                 LocalDateTime.of(2026, Month.APRIL, 1, 14, 6)));
     }
 
@@ -52,8 +51,8 @@ public class MemoryVacancyRepository implements VacancyRepository {
     public boolean update(Vacancy vacancy) {
         return vacancies.computeIfPresent(vacancy.getId(), (id, oldVacancy) ->
                 new Vacancy(oldVacancy.getId(), vacancy.getTitle(),
-                        vacancy.getDescription(), vacancy.getCreationDate()))
-                != null;
+                        vacancy.getDescription(), vacancy.getVisible(),
+                        vacancy.getCreationDate())) != null;
     }
 
     @Override
