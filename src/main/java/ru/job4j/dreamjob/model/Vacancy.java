@@ -1,6 +1,7 @@
 package ru.job4j.dreamjob.model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class Vacancy {
@@ -11,7 +12,10 @@ public class Vacancy {
 
     private String description;
 
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+
+    public Vacancy() {
+    }
 
     public Vacancy(int id, String title, String description, LocalDateTime creationDate) {
         this.id = id;
