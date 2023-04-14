@@ -4,7 +4,7 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Candidate;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Collection;
 import java.util.Map;
@@ -20,17 +20,17 @@ public class MemoryCandidateRepository implements CandidateRepository {
 
     private MemoryCandidateRepository() {
         save(new Candidate(1, "Смирнов И.И.", "умный", 1,
-                LocalDate.of(2021, Month.APRIL, 14), 0));
+                LocalDateTime.of(2021, Month.APRIL, 14, 10, 10), 0));
         save(new Candidate(1, "Иванов С.Е.", "красивый", 2,
-                LocalDate.of(2022, Month.AUGUST, 14), 0));
+                LocalDateTime.of(2022, Month.AUGUST, 14, 10, 5), 0));
         save(new Candidate(1, "Кузнецов О.А.", "общительный", 3,
-                LocalDate.of(2023, Month.SEPTEMBER, 14), 0));
+                LocalDateTime.of(2023, Month.SEPTEMBER, 14, 6, 25), 0));
         save(new Candidate(1, "Попов А.П.", "активный", 1,
-                LocalDate.of(2024, Month.JANUARY, 14), 0));
+                LocalDateTime.of(2024, Month.JANUARY, 14, 14, 35), 0));
         save(new Candidate(1, "Соколов П.С.", "креативный", 3,
-                LocalDate.of(2025, Month.OCTOBER, 14), 0));
+                LocalDateTime.of(2025, Month.OCTOBER, 14, 10, 20), 0));
         save(new Candidate(1, "Лебедев В.В.", "замечательный", 1,
-                LocalDate.of(2026, Month.JULY, 14), 0));
+                LocalDateTime.of(2026, Month.JULY, 14, 12, 10), 0));
     }
 
     @Override
