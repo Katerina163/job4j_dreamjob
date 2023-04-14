@@ -22,17 +22,17 @@ public class MemoryVacancyRepository implements VacancyRepository {
 
     private MemoryVacancyRepository() {
         save(new Vacancy(0, "Intern Java Developer", "Работа 24/7, без выходных", true, 1,
-                LocalDateTime.of(2021, Month.FEBRUARY, 14, 15, 30)));
+                LocalDateTime.of(2021, Month.FEBRUARY, 14, 15, 30), 0));
         save(new Vacancy(1, "Junior Java Developer", "Можно смотреть в окно до двух раз день", false, 3,
-                LocalDateTime.of(2022, Month.APRIL, 24, 14, 25)));
+                LocalDateTime.of(2022, Month.APRIL, 24, 14, 25), 0));
         save(new Vacancy(2, "Junior+ Java Developer", "Один отпускной день в году", true, 2,
-                LocalDateTime.of(2023, Month.JUNE, 9, 16, 13)));
+                LocalDateTime.of(2023, Month.JUNE, 9, 16, 13), 0));
         save(new Vacancy(3, "Middle Java Developer", "Отпускаем поспать дома", false, 1,
-                LocalDateTime.of(2024, Month.SEPTEMBER, 8, 17, 24)));
+                LocalDateTime.of(2024, Month.SEPTEMBER, 8, 17, 24), 0));
         save(new Vacancy(4, "Middle+ Java Developer", "Даем перерывы на еду", true, 3,
-                LocalDateTime.of(2025, Month.AUGUST, 12, 18, 15)));
+                LocalDateTime.of(2025, Month.AUGUST, 12, 18, 15), 0));
         save(new Vacancy(5, "Senior Java Developer", "Можете иногда спать", true, 2,
-                LocalDateTime.of(2026, Month.APRIL, 1, 14, 6)));
+                LocalDateTime.of(2026, Month.APRIL, 1, 14, 6), 0));
     }
 
     @Override
@@ -52,7 +52,8 @@ public class MemoryVacancyRepository implements VacancyRepository {
         return vacancies.computeIfPresent(vacancy.getId(), (id, oldVacancy) ->
                 new Vacancy(oldVacancy.getId(), vacancy.getTitle(),
                         vacancy.getDescription(), vacancy.getVisible(),
-                        vacancy.getCityId(), vacancy.getCreationDate())) != null;
+                        vacancy.getCityId(), vacancy.getCreationDate(),
+                        vacancy.getFileId())) != null;
     }
 
     @Override

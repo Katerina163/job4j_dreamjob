@@ -20,17 +20,17 @@ public class MemoryCandidateRepository implements CandidateRepository {
 
     private MemoryCandidateRepository() {
         save(new Candidate(1, "Смирнов И.И.", "умный", 1,
-                LocalDate.of(2021, Month.APRIL, 14)));
+                LocalDate.of(2021, Month.APRIL, 14), 0));
         save(new Candidate(1, "Иванов С.Е.", "красивый", 2,
-                LocalDate.of(2022, Month.AUGUST, 14)));
+                LocalDate.of(2022, Month.AUGUST, 14), 0));
         save(new Candidate(1, "Кузнецов О.А.", "общительный", 3,
-                LocalDate.of(2023, Month.SEPTEMBER, 14)));
+                LocalDate.of(2023, Month.SEPTEMBER, 14), 0));
         save(new Candidate(1, "Попов А.П.", "активный", 1,
-                LocalDate.of(2024, Month.JANUARY, 14)));
+                LocalDate.of(2024, Month.JANUARY, 14), 0));
         save(new Candidate(1, "Соколов П.С.", "креативный", 3,
-                LocalDate.of(2025, Month.OCTOBER, 14)));
+                LocalDate.of(2025, Month.OCTOBER, 14), 0));
         save(new Candidate(1, "Лебедев В.В.", "замечательный", 1,
-                LocalDate.of(2026, Month.JULY, 14)));
+                LocalDate.of(2026, Month.JULY, 14), 0));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
         return  candidates.computeIfPresent(candidate.getId(), (id, oldCandidate) ->
                 new Candidate(candidate.getId(), candidate.getName(),
                         candidate.getDescription(), candidate.getCityId(),
-                        candidate.getCreationDate())) != null;
+                        candidate.getCreationDate(), candidate.getFileId())) != null;
     }
 
     @Override

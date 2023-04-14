@@ -18,16 +18,20 @@ public class Vacancy {
 
     private LocalDateTime creationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
 
+    private int fileId;
+
     public Vacancy() {
     }
 
-    public Vacancy(int id, String title, String description, boolean visible, int cityId, LocalDateTime creationDate) {
+    public Vacancy(int id, String title, String description, boolean visible,
+                   int cityId, LocalDateTime creationDate, int fileId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.visible = visible;
         this.cityId = cityId;
         this.creationDate = creationDate;
+        this.fileId = fileId;
     }
 
     public int getId() {
@@ -76,6 +80,14 @@ public class Vacancy {
 
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 
     @Override

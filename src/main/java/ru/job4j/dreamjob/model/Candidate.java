@@ -8,6 +8,8 @@ public class Candidate {
     private String name;
     private String description;
 
+    private int fileId;
+
     private int cityId;
 
     private LocalDate creationDate = LocalDate.now();
@@ -15,12 +17,13 @@ public class Candidate {
     public Candidate() {
     }
 
-    public Candidate(int id, String name, String description, int cityId, LocalDate creationDate) {
+    public Candidate(int id, String name, String description, int cityId, LocalDate creationDate, int fileId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.cityId = cityId;
         this.creationDate = creationDate;
+        this.fileId = fileId;
     }
 
     public int getId() {
@@ -61,6 +64,14 @@ public class Candidate {
 
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 
     @Override
