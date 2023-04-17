@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import ru.job4j.dreamjob.configuration.DatasourceConfiguration;
 import ru.job4j.dreamjob.model.User;
 
-import java.util.Properties;
+import java.util.*;
 
+import static java.util.Optional.empty;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class Sql2oUserRepositoryTest {
@@ -43,5 +44,32 @@ class Sql2oUserRepositoryTest {
                 0, "email", "name", "password"));
         var saved = sql2oUserRepository.findByEmailAndPassword("email", "password");
         assertThat(saved).usingRecursiveComparison().isEqualTo(user);
+    }
+
+    @Test
+    public void whenDontSaveThenNothingFound() {
+        assertThat(sql2oUserRepository.findByEmailAndPassword("", "")).isEqualTo(empty());
+    }
+
+    @Test
+    public void whenDelete() {
+        var user = sql2oUserRepository.save(new User(
+                0, "email", "name", "password"));
+        var saved = sql2oUserRepository.findByEmailAndPassword("email", "password");
+        assertThat(saved).usingRecursiveComparison().isEqualTo(user);
+        sql2oUserRepository.deleteById(user.get().getId());
+        assertThat(sql2oUserRepository.findByEmailAndPassword("email", "password")).isEmpty();
+    }
+
+    @Test
+    public void whenFindAll() {
+        var user1 = sql2oUserRepository.save(new User(
+                0, "email", "name", "password"));
+        var user2 = sql2oUserRepository.save(new User(
+                1, "email1", "name1", "password1"));
+        var user3 = sql2oUserRepository.save(new User(
+                2, "email2", "name2", "password2"));
+        var userCollection = sql2oUserRepository.findAll();
+        assertThat(userCollection).isEqualTo(List.of(user1.get(), user2.get(), user3.get()));
     }
 }

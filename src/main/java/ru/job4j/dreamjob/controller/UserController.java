@@ -27,12 +27,11 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute User user, Model model) {
-        try {
-            userService.save(user);
-            return "index";
-        } catch (Exception ex) {
-            model.addAttribute("message", ex.getMessage());
+        var savedUser = userService.save(user);
+        if (savedUser.isEmpty()) {
+            model.addAttribute("message", "Пользователь с такой почтой уже существует");
             return "errors/404";
         }
+        return "redirect:/index";
     }
 }
