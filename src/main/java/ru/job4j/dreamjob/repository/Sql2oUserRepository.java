@@ -1,5 +1,7 @@
 package ru.job4j.dreamjob.repository;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import ru.job4j.dreamjob.model.Candidate;
@@ -10,6 +12,7 @@ import java.util.Optional;
 
 @Repository
 public class Sql2oUserRepository implements UserRepository {
+    private static final Logger LOG = LogManager.getLogger(Sql2oUserRepository.class.getName());
     private final Sql2o sql2o;
 
     public Sql2oUserRepository(Sql2o sql2o) {
@@ -29,7 +32,7 @@ public class Sql2oUserRepository implements UserRepository {
             user.setId(generatedId);
             userOptional = Optional.of(user);
         } catch (Exception exception) {
-            exception.printStackTrace();
+            LOG.warn("INSERT не удался", exception);
         }
         return userOptional;
     }
