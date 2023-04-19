@@ -35,8 +35,8 @@ class CandidateControllerTest {
 
     @Test
     public void whenRequestCandidateListPageThenGetPageWithCandidates() {
-        var candidate1 = new Candidate(1, "name", "desc", 1, now(),1);
-        var candidate2 = new Candidate(2, "name2", "desc2", 2, now(),2);
+        var candidate1 = new Candidate(1, "name", "desc", 1, now(), 1);
+        var candidate2 = new Candidate(2, "name2", "desc2", 2, now(), 2);
         var expectedCandidates = List.of(candidate1, candidate2);
         when(candidateService.findAll()).thenReturn(expectedCandidates);
         var model = new ConcurrentModel();
@@ -61,7 +61,7 @@ class CandidateControllerTest {
 
     @Test
     public void whenPostVacancyWithFileThenSameDataAndRedirectToVacanciesPage() throws Exception {
-        var candidate = new Candidate(1, "name", "desc", 1, now(),1);
+        var candidate = new Candidate(1, "name", "desc", 1, now(), 1);
         var fileDto = new FileDto(testFile.getOriginalFilename(), testFile.getBytes());
         var candidateArgumentCaptor = ArgumentCaptor.forClass(Candidate.class);
         var fileDtoArgumentCaptor = ArgumentCaptor.forClass(FileDto.class);
@@ -89,7 +89,7 @@ class CandidateControllerTest {
 
     @Test
     public void whenGetVacancyByIdThenFindAndGetPageOne() {
-        var candidate = new Candidate(1, "name", "desc", 1, now(),1);
+        var candidate = new Candidate(1, "name", "desc", 1, now(), 1);
         when(candidateService.findById(1)).thenReturn(Optional.of(candidate));
         var model = new ConcurrentModel();
         var view = candidateController.getById(model, 1);
