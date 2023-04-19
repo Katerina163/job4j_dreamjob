@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.dreamjob.dto.FileDto;
 import ru.job4j.dreamjob.model.Candidate;
+import ru.job4j.dreamjob.service.CandidateService;
 import ru.job4j.dreamjob.service.CityService;
-import ru.job4j.dreamjob.service.SimpleCandidateService;
 
 @ThreadSafe
 @Controller
 @RequestMapping("/candidates")
 public class CandidateController {
-    private final SimpleCandidateService candidateService;
+    private final CandidateService candidateService;
 
     private final CityService cityService;
 
-    public CandidateController(SimpleCandidateService candidateService, CityService cityService) {
+    public CandidateController(CandidateService candidateService, CityService cityService) {
         this.candidateService = candidateService;
         this.cityService = cityService;
     }
