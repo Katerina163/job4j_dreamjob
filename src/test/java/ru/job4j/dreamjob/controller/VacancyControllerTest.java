@@ -106,7 +106,7 @@ class VacancyControllerTest {
         assertThat(actualVacancy).isEqualTo(vacancy);
     }
 
-    /*@Test
+    @Test
     public void whenSomeExceptionThenGetErrorPageWithMessage() {
         var expectedException = new RuntimeException("Failed");
         when(vacancyService.findById(1)).thenThrow(expectedException);
@@ -115,5 +115,5 @@ class VacancyControllerTest {
         var actualExceptionMessage = model.getAttribute("message");
         assertThat(view).isEqualTo("errors/404");
         assertThat(actualExceptionMessage).isEqualTo(expectedException.getMessage());
-    }*/
+    }
 }
