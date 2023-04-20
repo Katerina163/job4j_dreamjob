@@ -108,12 +108,67 @@ class VacancyControllerTest {
 
     @Test
     public void whenSomeExceptionThenGetErrorPageWithMessage() {
-        var expectedException = new RuntimeException("Failed");
-        when(vacancyService.findById(1)).thenThrow(expectedException);
+        when(vacancyService.findById(1)).thenReturn(Optional.empty());
         var model = new ConcurrentModel();
         var view = vacancyController.getById(model, 1);
+        assertThat(view).isEqualTo("errors/404");
+    }
+
+    @Test
+    public void whenUpdateSuccess() throws Exception {
+        var vacancy = new Vacancy(1, "test1", "desc1",
+                true, 1, now(), 2);
+        var fileDto = new FileDto(testFile.getOriginalFilename(), testFile.getBytes());
+        var vacancyArgumentCaptor = ArgumentCaptor.forClass(Vacancy.class);
+        var fileDtoArgumentCaptor = ArgumentCaptor.forClass(FileDto.class);
+        when(vacancyService.update(vacancyArgumentCaptor.capture(),
+                fileDtoArgumentCaptor.capture())).thenReturn(true);
+        var model = new ConcurrentModel();
+        var view = vacancyController.update(vacancy, testFile, model);
+        var actualVacancy = vacancyArgumentCaptor.getValue();
+        var actualFileDto = fileDtoArgumentCaptor.getValue();
+        assertThat(view).isEqualTo("redirect:/vacancies");
+        assertThat(actualVacancy).isEqualTo(vacancy);
+        assertThat(fileDto).usingRecursiveComparison().isEqualTo(actualFileDto);
+    }
+
+    @Test
+    public void whenUpdateFailed() {
+        var vacancy = new Vacancy(1, "test1", "desc1",
+                true, 1, now(), 2);
+        var model = new ConcurrentModel();
+        var view = vacancyController.update(vacancy, testFile, model);
+        var actualExceptionMessage = model.getAttribute("message");
+        assertThat(view).isEqualTo("errors/404");
+        assertThat(actualExceptionMessage).isEqualTo("Вакансия с указанным идентификатором не найдена");
+    }
+
+    @Test
+    public void whenUpdateException() {
+        var expectedException = new RuntimeException("Failed");
+        when(vacancyService.update(any(), any())).thenThrow(expectedException);
+        var model = new ConcurrentModel();
+        var view = vacancyController.update(new Vacancy(), testFile, model);
         var actualExceptionMessage = model.getAttribute("message");
         assertThat(view).isEqualTo("errors/404");
         assertThat(actualExceptionMessage).isEqualTo(expectedException.getMessage());
+    }
+
+    @Test
+    public void whenDeleteSuccess() {
+        when(vacancyService.deleteById(1)).thenReturn(true);
+        var model = new ConcurrentModel();
+        var view = vacancyController.delete(model, 1);
+        assertThat(view).isEqualTo("redirect:/vacancies");
+    }
+
+    @Test
+    public void whenDeleteFailed() {
+        when(vacancyService.deleteById(1)).thenReturn(false);
+        var model = new ConcurrentModel();
+        var view = vacancyController.delete(model, 1);
+        assertThat(view).isEqualTo("errors/404");
+        var actualExceptionMessage = model.getAttribute("message");
+        assertThat(actualExceptionMessage).isEqualTo("Вакансия с указанным идентификатором не найдена");
     }
 }
