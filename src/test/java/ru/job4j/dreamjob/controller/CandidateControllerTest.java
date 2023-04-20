@@ -97,6 +97,7 @@ class CandidateControllerTest {
         assertThat(view).isEqualTo("candidates/one");
         assertThat(actualVacancy).isEqualTo(candidate);
     }
+
     @Test
     public void whenSomeExceptionThenGetErrorPageWithMessage() {
         when(candidateService.findById(1)).thenReturn(Optional.empty());
