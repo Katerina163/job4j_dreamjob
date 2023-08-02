@@ -30,10 +30,10 @@
 <img src="https://badgen.net/badge/PostgreSql/v.42.5.1/blue?icon=postgresql"/>
 </div>
 <div>
-  <img src="https://badgen.net/badge/H2/2.1.214/blue">
+  <img src="https://badgen.net/badge/H2/v.2.1.214/blue">
 </div>
 <div>
-  <img src="https://badgen.net/badge/sql2o/1.6.0/blue">
+  <img src="https://badgen.net/badge/sql2o/v.1.6.0/blue">
 </div>
 <h3>Сборка</h3>
 <div>
