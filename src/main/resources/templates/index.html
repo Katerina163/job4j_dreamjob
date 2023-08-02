@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-
     <!--  Зависимости Bootstrap-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,26 +12,9 @@
 </head>
 <body>
 <div class="container-fluid p-0">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">Job4jDreamJob</a>
-            <div class="collapse navbar-collapse">
-                <div class="navbar-nav me-auto">
-                    <a class="nav-item nav-link active" href="/">Главная</a>
-                    <a class="nav-item nav-link" th:href="@{/vacancies}">Вакансии</a>
-                    <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
-                    <a class="nav-item nav-link" th:href="@{/vacancies/create}">Создать вакансию</a>
-                    <a class="nav-item nav-link" th:href="@{/candidates/create}">Создать резюме</a>
-                </div>
-                <div class="d-flex">
-                    <a class="nav-link text-secondary me-3" href="#" th:text="${user.name}"></a>
-                    <a class="nav-link text-secondary" th:href="@{/users/logout}">Выйти</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div th:insert="~{fragments :: menu}"></div>
     <div class="container mt-2">
-        <h3>Проект job4j_dreamjob, выполняемый в рамках курса Job4j</h3>
+        <h3>Проект Dreamjob, интернет-сервис по подбору персонала и поиску работы</h3>
         <ul>
             <li><a th:href="@{/vacancies}">Вакансии</a></li>
             <li><a th:href="@{/candidates}">Кандидаты</a></li>
